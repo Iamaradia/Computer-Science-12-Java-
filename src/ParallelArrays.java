@@ -7,13 +7,18 @@ public class ParallelArrays {
 
         for (int i = 0; i < numEmployee; i++) {
             double earned = calculatePay(hourlyWage[i], hoursWorked[i]);
-            System.out.println("Employee " + employeeNumbers[i] + " worked " + hoursWorked[i] + " hours this week at $" + hourlyWage[i] + " per hour and earned $" + earned);
+            System.out.print("Employee " + employeeNumbers[i] + " worked " + hoursWorked[i] + " hours this week at $" + String.format("%.2f", hourlyWage[i]) + " per hour and earned $");
+            System.out.println(String.format("%.2f", earned));
         }
 
 
     }
 
     private static double calculatePay(double wage, int hours) {
-        return (wage*hours);
+        if (hours <= 40) {
+            return (wage * hours);
+        }
+
+        return (wage * 40 + wage * 1.5 * (hours-40));
     }
 }
